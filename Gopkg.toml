@@ -1,0 +1,17 @@
+[[constraint]]
+  name = "github.com/cloudevents/sdk-go"
+  #version = "0.6.0"
+  revision = "9396c7c29f83ee72cc817e0853312fa824b388b7"
+  #source = "github.com/n3wscott/sdk-go"
+
+[[constraint]]
+  name = "github.com/kelseyhightower/envconfig"
+  version = "1.3.0"
+
+[[constraint]]
+  name = "pack.ag/amqp"
+  version = "0.11.0"
+
+[prune]
+  go-tests = true
+  unused-packages = true

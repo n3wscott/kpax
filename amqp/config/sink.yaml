@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: <NAME>-sink
+spec:
+  selector:
+    matchLabels:
+      app: <NAME>-sink
+  template:
+    metadata:
+      labels:
+        app: <NAME>-sink
+    spec:
+      containers:
+      - name: user-container
+        image: github.com/n3wscott/kpax/amqp/cmd/sink
+        env:
+          - name: AMQP_SERVER
+            valueFrom:
+              secretKeyRef:
+                name: amqp
+                key: server
+          - name: AMQP_QUEUE
+            valueFrom:
+              secretKeyRef:
+                name: amqp
+                key: queue
+          - name: AMQP_ACCESS_KEY_NAME
+            valueFrom:
+              secretKeyRef:
+                name: amqp
+                key: access_key_name
+          - name: AMQP_ACCESS_KEY
+            valueFrom:
+              secretKeyRef:
+                name: amqp
+                key: access_key
+        ports:
+        - containerPort: 8080
+      volumes:
+      - name: amqp
+        secret:
+          secretName: <NAME>-amqp
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: <name>-sink
+spec:
+  selector:
+    app: <name>-sink
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 8080
