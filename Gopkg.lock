@@ -2,7 +2,7 @@
 
 
 [[projects]]
-  digest = "1:17c282fcf7f7ef2c31bd43ba1479718cafa9f4279bd326757bc183bdc81029fc"
+  digest = "1:f8223678c33c7d67b8bd398b8776132108fea59570f0e946de0359d8df5f1a91"
   name = "github.com/cloudevents/sdk-go"
   packages = [
     ".",
@@ -20,7 +20,8 @@
     "pkg/cloudevents/types",
   ]
   pruneopts = "UT"
-  revision = "9396c7c29f83ee72cc817e0853312fa824b388b7"
+  revision = "1068e2f525dffe599397dba86456909f8b479efd"
+  source = "github.com/n3wscott/sdk-go"
 
 [[projects]]
   digest = "1:582b704bebaa06b48c29b0cec224a6058a09c86883aaddabde889cd1a5f73e1b"
