@@ -15,6 +15,9 @@ type envConfig struct {
 	Queue         string `envconfig:"AMQP_QUEUE" required:"true"`
 	AccessKeyName string `envconfig:"AMQP_ACCESS_KEY_NAME" default:"guest" required:"true"`
 	AccessKey     string `envconfig:"AMQP_ACCESS_KEY" default:"password" required:"true"`
+
+	SinkAccessKeyName string `envconfig:"SINK_ACCESS_KEY_NAME" default:"sak" required:"true"`
+	SinkAccessKey     string `envconfig:"SINK_ACCESS_KEY" default:"sak" required:"true"`
 }
 
 func main() {
@@ -25,10 +28,12 @@ func main() {
 	}
 
 	ra := amqp.NewSink(amqp.Options{
-		AMQPServer:    env.AMQPServer,
-		Queue:         env.Queue,
-		AccessKey:     env.AccessKey,
-		AccessKeyName: env.AccessKeyName,
+		AMQPServer:        env.AMQPServer,
+		Queue:             env.Queue,
+		AccessKeyName:     env.AccessKeyName,
+		AccessKey:         env.AccessKey,
+		SinkAccessKeyName: env.SinkAccessKeyName,
+		SinkAccessKey:     env.SinkAccessKey,
 	})
 
 	if err := ra.Start(context.Background()); err != nil {

@@ -26,5 +26,5 @@ func (a *source) Start(ctx context.Context) error {
 		return fmt.Errorf("source failed to create outbound client, %s", err.Error())
 	}
 
-	return bridge.Bridge(ctx, inbound, outbound)
+	return bridge.Bridge(ctx, inbound, outbound, nil)
 }

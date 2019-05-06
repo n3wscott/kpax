@@ -10,6 +10,7 @@ spec:
     metadata:
       labels:
         app: <NAME>-sink
+        sidecar.istio.io/inject: "true"
     spec:
       containers:
       - name: user-container
@@ -18,30 +19,38 @@ spec:
           - name: AMQP_SERVER
             valueFrom:
               secretKeyRef:
-                name: amqp
+                name: <NAME>-amqp
                 key: server
           - name: AMQP_QUEUE
             valueFrom:
               secretKeyRef:
-                name: amqp
+                name: <NAME>-amqp
                 key: queue
           - name: AMQP_ACCESS_KEY_NAME
             valueFrom:
               secretKeyRef:
-                name: amqp
+                name: <NAME>-amqp
                 key: access_key_name
           - name: AMQP_ACCESS_KEY
             valueFrom:
               secretKeyRef:
-                name: amqp
+                name: <NAME>-amqp
                 key: access_key
+          - name: SINK_ACCESS_KEY_NAME
+            valueFrom:
+              secretKeyRef:
+                name: <NAME>-amqp
+                key: sink_access_key_name
+          - name: SINK_ACCESS_KEY
+            valueFrom:
+              secretKeyRef:
+                name: <NAME>-amqp
+                key: sink_access_key
         ports:
         - containerPort: 8080
-      volumes:
-      - name: amqp
-        secret:
-          secretName: <NAME>-amqp
+
 ---
+
 apiVersion: v1
 kind: Service
 metadata:

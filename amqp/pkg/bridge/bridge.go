@@ -9,14 +9,26 @@ import (
 
 type adapter struct {
 	client cloudevents.Client
+	fn     PassFilterFunction
 }
 
-func Bridge(ctx context.Context, inbound, outbound cloudevents.Client) error {
-	a := adapter{client: outbound}
+// PassFilterFunction return true to pass the filter.
+type PassFilterFunction func(*cloudevents.Event) bool
+
+func Bridge(ctx context.Context, inbound, outbound cloudevents.Client, fn PassFilterFunction) error {
+	a := adapter{
+		client: outbound,
+		fn:     fn,
+	}
 	return inbound.StartReceiver(ctx, a.Receive)
 }
 
 func (a *adapter) Receive(ctx context.Context, event cloudevents.Event, resp *cloudevents.EventResponse) error {
+	if a.fn != nil {
+		if !a.fn(&event) {
+			return nil
+		}
+	}
 	ret, err := a.client.Send(ctx, event)
 	if err != nil {
 		return err

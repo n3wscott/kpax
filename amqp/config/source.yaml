@@ -5,6 +5,7 @@ metadata:
 spec:
   image: github.com/n3wscott/kpax/amqp/cmd/source
   env:
+  # TODO: secrets are not supported in knative container sources yet. Fix that.
     - name: AMQP_SERVER
       valueFrom:
         secretKeyRef:

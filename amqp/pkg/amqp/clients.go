@@ -19,6 +19,11 @@ type Options struct {
 	// HTTP:
 
 	Sink *url.URL
+
+	// Sink
+
+	SinkAccessKeyName string
+	SinkAccessKey     string
 }
 
 func makeAMQPClient(opt Options) (cloudevents.Client, error) {
