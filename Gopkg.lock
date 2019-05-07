@@ -20,7 +20,7 @@
     "pkg/cloudevents/types",
   ]
   pruneopts = "UT"
-  revision = "1068e2f525dffe599397dba86456909f8b479efd"
+  revision = "001f4eefdc635dd230bffd7d7f7f8842803e4c9f"
   source = "github.com/n3wscott/sdk-go"
 
 [[projects]]
@@ -30,6 +30,14 @@
   pruneopts = "UT"
   revision = "0cd6bf5da1e1c83f8b45653022c74f71af0538a4"
   version = "v1.1.1"
+
+[[projects]]
+  digest = "1:d5f97fc268267ec1b61c3453058c738246fc3e746f14b1ae25161513b7367b0c"
+  name = "github.com/gorilla/mux"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "c5c6c98bc25355028a63748a498942a6398ccd22"
+  version = "v1.7.1"
 
 [[projects]]
   digest = "1:67474f760e9ac3799f740db2c489e6423a4cde45520673ec123ac831ad849cb8"
@@ -125,6 +133,7 @@
   input-imports = [
     "github.com/cloudevents/sdk-go",
     "github.com/cloudevents/sdk-go/pkg/cloudevents/transport/amqp",
+    "github.com/gorilla/mux",
     "github.com/kelseyhightower/envconfig",
     "pack.ag/amqp",
   ]
