@@ -4,20 +4,19 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/gorilla/mux"
-	"github.com/n3wscott/kpax/poke/pkg/controllers"
+	"github.com/n3wscott/kpax/poke/pkg/controller"
 )
 
 func main() {
 
 	port := ":8080"
+	root := "/Users/nicholss/go/src/github.com/n3wscott/kpax/poke/cmd/poke/kodata"
 
-	r := mux.NewRouter()
-	r.HandleFunc("/", controllers.RootHandler)
-	r.HandleFunc("/do", controllers.DoHandler).Methods("POST")
-	r.PathPrefix("/static/").Handler(http.StripPrefix("/static/",
-		http.FileServer(http.Dir("/home/nicholss/go/src/github.com/n3wscott/kpax/poke/cmd/poke/kodata/static"))))
+	c := controller.New(root)
 
-	http.Handle("/", r)
+	c.Router().PathPrefix("/static/").Handler(http.StripPrefix("/static/",
+		http.FileServer(http.Dir(root+"/static"))))
+
+	http.Handle("/", c.Router())
 	log.Fatal(http.ListenAndServe(port, nil))
 }
