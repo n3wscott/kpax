@@ -2,19 +2,24 @@ package controller
 
 import (
 	"github.com/gorilla/mux"
+	"github.com/n3wscott/knap/pkg/knative"
 	"sync"
 )
 
 type Controller struct {
-	root string
+	root      string
+	kn        *knative.Client
+	namespace string
 
 	router *mux.Router
 	once   sync.Once
 }
 
-func New(root string) *Controller {
+func New(root string, kn *knative.Client, ns string) *Controller {
 	return &Controller{
-		root: root,
+		root:      root,
+		kn:        kn,
+		namespace: ns,
 	}
 }
 

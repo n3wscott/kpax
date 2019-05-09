@@ -15,3 +15,23 @@
 [prune]
   go-tests = true
   unused-packages = true
+
+[[constraint]]
+  name = "github.com/n3wscott/knap"
+  revision = "120328ec5bf4acd0aa17355b264defa1dcc6009f"
+
+[[override]]
+  name = "k8s.io/client-go"
+  version = "kubernetes-1.12.6"
+
+[[override]]
+  name = "github.com/knative/pkg"
+  revision = "0f749ef7d5e65aba4e8a76aa34b4744685981a91"
+
+[[override]]
+  name = "github.com/knative/eventing"
+  revision = "b437219896ceb21556e42701ac03478b582f8c1f"
+
+[[override]]
+  name = "github.com/knative/serving"
+  revision = "3557f16e40c47bebd38be7d38844c6f44a83ba33"

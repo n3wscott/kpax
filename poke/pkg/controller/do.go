@@ -2,17 +2,32 @@ package controller
 
 import (
 	"fmt"
+	"mime"
 	"net/http"
+	"time"
 )
 
 func (c *Controller) DoHandler(w http.ResponseWriter, r *http.Request) {
 
 	switch r.Method {
 	case "POST":
-		if err := r.ParseForm(); err != nil {
-			fmt.Fprintf(w, "ParseForm() err: %v", err)
-			return
+
+		ct := r.Header.Get("Content-Type")
+		ct, _, err := mime.ParseMediaType(ct)
+		if err != nil {
+			fmt.Fprintf(w, "ParseMediaType() err: %v", err)
 		}
+
+		switch {
+		case ct == "multipart/form-data":
+			if err := r.ParseMultipartForm(1000); err != nil {
+				fmt.Fprintf(w, "ParseMultipartForm() err: %v", err)
+				return
+			}
+		default:
+			fmt.Fprintf(w, "unhandled: %v", ct)
+		}
+
 		fmt.Fprintf(w, "Post from website! r.PostFrom = %v\n", r.PostForm)
 		eventtype := r.FormValue("eventtype")
 
@@ -27,6 +42,8 @@ func (c *Controller) DoHandler(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprintf(w, "Form = %+v\n", r.PostForm)
 
 		fmt.Fprintf(w, "Type = %s\n", eventtype)
+
+		fmt.Fprintf(w, "Time = %s\n", time.Now().String())
 	default:
 		fmt.Fprintf(w, "only POST method is supported.")
 	}
