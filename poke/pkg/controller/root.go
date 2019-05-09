@@ -3,10 +3,21 @@ package controller
 import (
 	"html/template"
 	"net/http"
+	"sync"
 )
 
+var once sync.Once
+var t *template.Template
+
 func (c *Controller) RootHandler(w http.ResponseWriter, r *http.Request) {
-	t, _ := template.ParseFiles(c.root + "/templates/index.html")
+
+	once.Do(func() {
+		t, _ = template.ParseFiles(
+			c.root+"/templates/index.html",
+			c.root+"/templates/top.html",
+			c.root+"/templates/side.html",
+		)
+	})
 
 	data := map[string]interface{}{
 		"test": "data",
