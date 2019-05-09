@@ -5,8 +5,6 @@ import (
 	"github.com/kelseyhightower/envconfig"
 	"github.com/n3wscott/knap/pkg/config"
 	"github.com/n3wscott/knap/pkg/knative"
-
-	//"github.com/n3wscott/knap/pkg/knative"
 	"github.com/n3wscott/kpax/poke/pkg/controller"
 	"k8s.io/client-go/dynamic"
 	"log"
@@ -14,6 +12,9 @@ import (
 	"os"
 	"os/user"
 	"path"
+
+	// Uncomment the following line to load the gcp plugin (only required to authenticate against GKE clusters).
+	_ "k8s.io/client-go/plugin/pkg/client/auth/gcp"
 )
 
 var (
@@ -26,10 +27,10 @@ type envConfig struct {
 	Port string `envconfig:"PORT" default:":8080"`
 
 	// Name of this pod.
-	Name string `envconfig:"POD_NAME" required:"true"`
+	Name string `envconfig:"POD_NAME" default:"localhost" required:"true"`
 
 	// Namespace this pod exists in.
-	Namespace string `envconfig:"POD_NAMESPACE" required:"true"`
+	Namespace string `envconfig:"POD_NAMESPACE" default:"default" required:"true"`
 }
 
 func init() {
@@ -63,8 +64,7 @@ func main() {
 
 	client = dynamic.NewForConfigOrDie(cfg)
 
-	//kn := knative.New(client)
-	var kn *knative.Client
+	kn := knative.New(client)
 
 	root := "/Users/nicholss/go/src/github.com/n3wscott/kpax/poke/cmd/poke/kodata"
 

@@ -2,6 +2,14 @@
 
 
 [[projects]]
+  digest = "1:80004fcc5cf64e591486b3e11b406f1e0d17bf85d475d64203c8494f5da4fcd1"
+  name = "cloud.google.com/go"
+  packages = ["compute/metadata"]
+  pruneopts = "UT"
+  revision = "8c41231e01b2085512d98153bcffb847ff9b4b9f"
+  version = "v0.38.0"
+
+[[projects]]
   digest = "1:f8223678c33c7d67b8bd398b8776132108fea59570f0e946de0359d8df5f1a91"
   name = "github.com/cloudevents/sdk-go"
   packages = [
@@ -428,11 +436,14 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:9927d6aceb89d188e21485f42a7a254e67e6fdcf4260aba375fe18e3c300dfb4"
+  digest = "1:645cb780e4f3177111b40588f0a7f5950efcfb473e7ff41d8d81b2ba5eaa6ed5"
   name = "golang.org/x/oauth2"
   packages = [
     ".",
+    "google",
     "internal",
+    "jws",
+    "jwt",
   ]
   pruneopts = "UT"
   revision = "9f3314589c9a9136388751d9adae6b0ed400978a"
@@ -482,13 +493,16 @@
   revision = "9d24e82272b4f38b78bc8cff74fa936d31ccd8ef"
 
 [[projects]]
-  digest = "1:6eb6e3b6d9fffb62958cf7f7d88dbbe1dd6839436b0802e194c590667a40412a"
+  digest = "1:04f2ff15fc59e1ddaf9900ad0e19e5b19586b31f9dafd4d592b617642b239d8f"
   name = "google.golang.org/appengine"
   packages = [
+    ".",
     "internal",
+    "internal/app_identity",
     "internal/base",
     "internal/datastore",
     "internal/log",
+    "internal/modules",
     "internal/remote_api",
     "internal/urlfetch",
     "urlfetch",
@@ -614,7 +628,7 @@
   version = "kubernetes-1.12.6"
 
 [[projects]]
-  digest = "1:c1a099abc91bf21e441d87740b19fa9ef931ff180f11836ce59cab21bcab2b7a"
+  digest = "1:cf7dd24a60a10c8092df576341eebbab41b93ba989017b8b55c63d04d17e9a37"
   name = "k8s.io/client-go"
   packages = [
     "discovery",
@@ -728,8 +742,10 @@
     "pkg/apis/clientauthentication/v1beta1",
     "pkg/version",
     "plugin/pkg/client/auth/exec",
+    "plugin/pkg/client/auth/gcp",
     "rest",
     "rest/watch",
+    "third_party/forked/golang/template",
     "tools/auth",
     "tools/cache",
     "tools/clientcmd",
@@ -746,6 +762,7 @@
     "util/flowcontrol",
     "util/homedir",
     "util/integer",
+    "util/jsonpath",
     "util/retry",
   ]
   pruneopts = "UT"
@@ -774,6 +791,7 @@
     "github.com/n3wscott/knap/pkg/config",
     "github.com/n3wscott/knap/pkg/knative",
     "k8s.io/client-go/dynamic",
+    "k8s.io/client-go/plugin/pkg/client/auth/gcp",
     "pack.ag/amqp",
   ]
   solver-name = "gps-cdcl"
