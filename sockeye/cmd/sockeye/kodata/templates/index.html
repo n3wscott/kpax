@@ -1,64 +1,37 @@
+<!doctype html>
 <html lang="en">
-
 <head>
-    <title>Sockeye</title>
     <meta charset="utf-8">
-    <link href="/static/assets/favicon.ico" rel="shortcut icon" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <title>Sockeye</title>
+    <link rel="shortcut icon" sizes="192x192" href="/static/assets/favicon.ico">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.blue-indigo.min.css" />
+    <link rel="stylesheet" href="/static/css/style.css">
 </head>
-
 <body>
+<div class="sockeye-layout mdl-layout mdl-layout--fixed-header mdl-js-layout mdl-color--grey-100">
+    <header class="sockeye-header mdl-layout__header mdl-layout__header--scroll mdl-color--grey-100 mdl-color-text--grey-800">
+        <div class="mdl-layout__header-row">
+            <span class="mdl-layout-title">Sockeye</span>
+        </div>
+    </header>
+    <div class="sockeye-ribbon"></div>
 
-<div id="middle-section">
-    <div id="log"></div>
+    <main class="sockeye-main mdl-layout__content">
+
+        {{template "main.html"}}
+
+    </main>
+    <footer class="sockeye-footer mdl-mini-footer">
+        <div class="mdl-mini-footer--left-section">
+            <ul class="mdl-mini-footer--link-list">
+                <li><a href="https://github.com/n3wscott/kpax/sockeye">githhub</a></li>
+            </ul>
+        </div>
+    </footer>
 </div>
-
-<script>
-window.onload = function () {
-
-    console.log("Protocol: " + location.protocol);
-    var wsURL = "ws://" + document.location.host + "/ws";
-    if (location.protocol === 'https:') {
-        wsURL = "wss://" + document.location.host + "/ws";
-    }
-    console.log("WS URL: " + wsURL);
-
-    var log = document.getElementById("log");
-
-    function appendLog(item) {
-        var doScroll = log.scrollTop > log.scrollHeight - log.clientHeight - 1;
-        log.appendChild(item);
-        if (doScroll) {
-            log.scrollTop = log.scrollHeight - log.clientHeight;
-        }
-
-    }
-
-    if (log) {
-
-        sock = new WebSocket(wsURL);
-
-        sock.onopen = function () {
-            console.log("connected to " + wsURL);
-        };
-
-        sock.onclose = function (e) {
-            console.log("connection closed (" + e.code + ")");
-        };
-
-        sock.onmessage = function (e) {
-            console.log(e);
-            var t = JSON.parse(e.data);
-            console.log(t);
-            var item = document.createElement("div");
-            item.className = "item";
-            item.innerText = t;
-            appendLog(item);
-        };
-
-    } // if log
-
-};
-</script>
-
+<script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
 </body>
 </html>

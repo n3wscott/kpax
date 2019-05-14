@@ -11,18 +11,7 @@ import (
 	"strings"
 )
 
-var (
-	cluster    string
-	kubeconfig string
-)
-
 type envConfig struct {
-	// Name of this pod.
-	Name string `envconfig:"POD_NAME" default:"localhost" required:"true"`
-
-	// Namespace this pod exists in.
-	Namespace string `envconfig:"POD_NAMESPACE" default:"default" required:"true"`
-
 	FilePath string `envconfig:"FILE_PATH" default:"/var/run/ko/" required:"true"`
 }
 

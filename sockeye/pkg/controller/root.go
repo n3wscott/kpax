@@ -12,7 +12,8 @@ var t *template.Template
 func (c *Controller) RootHandler(w http.ResponseWriter, r *http.Request) {
 	once.Do(func() {
 		t, _ = template.ParseFiles(
-			c.root + "/templates/index.html",
+			c.root+"/templates/index.html",
+			c.root+"/templates/main.html",
 		)
 	})
 

@@ -1,21 +1,21 @@
 package controller
 
 import (
-	"encoding/json"
 	"fmt"
 	cloudevents "github.com/cloudevents/sdk-go"
+	"github.com/cloudevents/sdk-go/pkg/cloudevents/codec"
 )
 
 func (c *Controller) CeHandler(event cloudevents.Event) {
 	fmt.Println("got", event.String())
 
-	b, err := json.Marshal(event)
+	// TODO: cloudevents needs a websocket transport.
+
+	b, err := codec.JsonEncodeV03(event)
 	if err != nil {
 		fmt.Println("err", err)
 		return
 	}
-
-	// TODO: cloudevents needs a websocket transport.
 
 	manager.broadcast <- string(b)
 
