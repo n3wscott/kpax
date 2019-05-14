@@ -10,7 +10,7 @@
   version = "v0.38.0"
 
 [[projects]]
-  digest = "1:f8223678c33c7d67b8bd398b8776132108fea59570f0e946de0359d8df5f1a91"
+  digest = "1:23f0cc24c33531bcafd6a69256dccfdabb02d26b8fbbd2fe181288c2471f98f1"
   name = "github.com/cloudevents/sdk-go"
   packages = [
     ".",
@@ -28,8 +28,8 @@
     "pkg/cloudevents/types",
   ]
   pruneopts = "UT"
-  revision = "001f4eefdc635dd230bffd7d7f7f8842803e4c9f"
-  source = "github.com/n3wscott/sdk-go"
+  revision = "56931988abe3adf6792b5c6e575ee5f573e9ccbc"
+  version = "0.7.0"
 
 [[projects]]
   digest = "1:ffe9824d294da03b391f44e1ae8281281b4afc1bdaa9588c9097785e3af10cec"
@@ -421,7 +421,7 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:b9bf9ddb713916ca0fe4630b135cc937c81a00378a97083a906c9669d56ab23f"
+  digest = "1:1880043772ea65e49532c9b33de2b3f42646b2245be09cf5d1e12533d0d43f83"
   name = "golang.org/x/net"
   packages = [
     "context",
@@ -430,6 +430,7 @@
     "http2",
     "http2/hpack",
     "idna",
+    "websocket",
   ]
   pruneopts = "UT"
   revision = "f4e77d36d62c17c2336347bb2670ddbd02d092b7"
@@ -790,6 +791,7 @@
     "github.com/kelseyhightower/envconfig",
     "github.com/n3wscott/knap/pkg/config",
     "github.com/n3wscott/knap/pkg/knative",
+    "golang.org/x/net/websocket",
     "k8s.io/client-go/dynamic",
     "k8s.io/client-go/plugin/pkg/client/auth/gcp",
     "pack.ag/amqp",

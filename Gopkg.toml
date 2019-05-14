@@ -1,8 +1,6 @@
 [[constraint]]
   name = "github.com/cloudevents/sdk-go"
-  #version = "0.6.0"
-  revision = "001f4eefdc635dd230bffd7d7f7f8842803e4c9f"
-  source = "github.com/n3wscott/sdk-go"
+  version = "=0.7.0"
 
 [[constraint]]
   name = "github.com/kelseyhightower/envconfig"
