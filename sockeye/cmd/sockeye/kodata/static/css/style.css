@@ -14,6 +14,11 @@
     padding-left: 40px;
 }
 
+.sockeye-logo-image {
+    height: 100px;
+    padding-top: 35px;
+}
+
 .sockeye-container {
     max-width: 1600px;
     width: calc(100% - 16px);
