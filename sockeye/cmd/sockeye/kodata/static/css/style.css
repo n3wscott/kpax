@@ -53,3 +53,27 @@
 .sockeye-footer .mdl-mini-footer--link-list a {
     font-size: 13px;
 }
+
+pre {
+    padding: 5px; margin: 5px;
+}
+
+.json-string {
+    color: green;
+}
+
+.json-umber {
+    color: darkorange;
+}
+
+.json-boolean {
+    color: blue;
+}
+
+.json-null {
+    color: magenta;
+}
+
+.json-key {
+    color: red;
+}

@@ -30,10 +30,21 @@ func main() {
 	c.Mux().Handle("/static/", http.StripPrefix("/static/",
 		http.FileServer(http.Dir(env.FilePath+"static"))))
 
-	t, err := cloudevents.NewHTTPTransport(cloudevents.WithBinaryEncoding())
+	t, err := cloudevents.NewHTTPTransport(
+		cloudevents.WithBinaryEncoding(),
+		cloudevents.WithPath("/ce"), // hack hack
+	)
 	if err != nil {
 		log.Fatalf("failed to create cloudevents transport, %s", err.Error())
 	}
+	// I am doing this to allow root to be both POST for cloudevents and GET as root ui.
+	c.Mux().HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		if r.Method == "POST" {
+			t.ServeHTTP(w, r)
+			return
+		}
+		c.RootHandler(w, r)
+	})
 	t.Handler = c.Mux()
 
 	ce, err := cloudevents.NewClient(t, cloudevents.WithUUIDs(), cloudevents.WithTimeNow())
