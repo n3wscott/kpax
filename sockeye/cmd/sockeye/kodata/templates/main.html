@@ -1,20 +1,26 @@
 <div class="sockeye-container mdl-grid"></div>
 
+<button id="fab" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored sockeye-fab">
+    <i class="material-icons">clear</i>
+</button>
+
 <script>
 
     injectPad = function(container) {
         let pad = document.createElement("div");
-        pad.className = "mdl-cell mdl-cell--2-col mdl-cell--hide-tablet mdl-cell--hide-phone";
+        pad.className = "mdl-cell mdl-cell--1-col mdl-cell--hide-tablet mdl-cell--hide-phone";
         container.appendChild(pad);
     };
 
     makeTable = function(subject) {
         let c = document.createElement("div");
-        c.className = "sockeye-content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--8-col";
+        c.className = "sockeye-content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--10-col";
 
         let s = document.createElement("div");
         s.className = "sockeye-crumbs mdl-color-text--grey-500";
-        s.innerText = "Subject > " + subject;
+        if (subject !== "no-subject") {
+            s.innerText = "Subject > " + subject;
+        }
 
         c.appendChild(s);
 
@@ -74,26 +80,41 @@
         td1.className = "mdl-data-table__cell--non-numeric";
 
 
-        let os = document.createElement("span");
-        os.className = "mdl-chip";
+        let p1 = document.createElement("pre");
 
-        let is = document.createElement("span");
-        is.className = "mdl-chip__text";
-        is.innerText = e["type"];
+        let data = e["data"];
+        delete e["data"];
 
-        os.appendChild(is);
+        p1.innerHTML = syntaxHighlight(JSON.stringify(e, null, 2));
+        p1.className = "json";
+        td1.appendChild(p1);
 
-        td1.appendChild(os);
+        // Chips:
+        // function newChip(value, key, map) {
+        //     console.log(`m[${key}] = ${value}`);
+        //
+        //     let os = document.createElement("span");
+        //     os.className = "mdl-chip";
+        //
+        //     let is = document.createElement("span");
+        //     is.className = "mdl-chip__text";
+        //     is.innerText = `m[${key}]: ${value}`;
+        //     os.appendChild(is);
+        //
+        //     td1.appendChild(os);
+        // }
+        // new Map(Object.entries(e))
+        //     .forEach(newChip);
 
         tr.appendChild(td1);
 
         let td2 = document.createElement("td");
         td2.className = "mdl-data-table__cell--non-numeric";
 
-        let p = document.createElement("pre");
-        p.innerHTML = syntaxHighlight(JSON.stringify(e["data"], null, 2));
-        p.className = "json";
-        td2.appendChild(p);
+        let p2 = document.createElement("pre");
+        p2.innerHTML = syntaxHighlight(JSON.stringify(data, null, 2));
+        p2.className = "json";
+        td2.appendChild(p2);
 
         tr.appendChild(td2);
 
@@ -101,7 +122,6 @@
     };
 
     window.onload = function () {
-
         let subjects = {};
 
         let main = document.getElementsByTagName("main")[0].getElementsByClassName("sockeye-container")[0];
@@ -113,25 +133,13 @@
         }
         console.log("WS URL: " + wsURL);
 
-
-        function appendLog(log, item) {
-            let doScroll = log.scrollTop > log.scrollHeight - log.clientHeight - 1;
-            log.appendChild(item);
-            if (doScroll) {
-                log.scrollTop = log.scrollHeight - log.clientHeight;
-            }
-        }
-
         sock = new WebSocket(wsURL);
-
         sock.onopen = function () {
             console.log("connected to " + wsURL);
         };
-
         sock.onclose = function (e) {
             console.log("connection closed (" + e.code + ")");
         };
-
         sock.onmessage = function (e) {
             let t = JSON.parse(JSON.parse(e.data)); // at the moment the ws sends down a double encoded thing.
 
@@ -152,7 +160,19 @@
                 subjects[key] = log;
             }
 
-            appendRow(log, t)
+            let doScroll = window.scrollTop > window.scrollHeight - window.clientHeight - 1;
+            appendRow(log, t);
+            if (doScroll) {
+                window.scrollTop = window.scrollHeight - window.clientHeight;
+            }
+        };
+
+        let fab = document.getElementById("fab");
+        fab.onclick = function(){
+            while (main.firstChild) {
+                main.removeChild(main.firstChild);
+            }
+            subjects = {};
         };
 
     };

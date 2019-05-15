@@ -28,6 +28,7 @@
 .sockeye-content {
     border-radius: 15px;
     padding: 20px 30px;
+    overflow-x: auto;
 }
 
 .sockeye-layout.is-small-screen .sockeye-content {
@@ -44,6 +45,12 @@
 
 .sockeye-list-item {
     width: calc(100% - 16px);
+}
+
+.sockeye-fab {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
 }
 
 .sockeye-footer {
