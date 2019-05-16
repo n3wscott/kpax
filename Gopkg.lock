@@ -48,6 +48,25 @@
   version = "v4.2.0"
 
 [[projects]]
+  digest = "1:0e16b03c72bd42739ca68d055c10369e60d17838428f512f3b29ae115ba788e0"
+  name = "github.com/gdamore/encoding"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "6289cdc94c00ac4aa177771c5fce7af2f96b626d"
+  version = "v1.0.0"
+
+[[projects]]
+  digest = "1:939e23f904cb50168a21dc38ca60b432a0e57482bed803fdae94223821dcad59"
+  name = "github.com/gdamore/tcell"
+  packages = [
+    ".",
+    "terminfo",
+  ]
+  pruneopts = "UT"
+  revision = "b5d0c1ac570211e469f43ff88c0c6aa4b56cc99a"
+  version = "v1.1.2"
+
+[[projects]]
   digest = "1:2cd7915ab26ede7d95b8749e6b1f933f1c6d5398030684e6505940a10f31cfda"
   name = "github.com/ghodss/yaml"
   packages = ["."]
@@ -272,6 +291,25 @@
   revision = "3557f16e40c47bebd38be7d38844c6f44a83ba33"
 
 [[projects]]
+  digest = "1:39de67207027b7374272d5ec9b1bf85457714150ba1263e8d236316629dad570"
+  name = "github.com/lucasb-eyer/go-colorful"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "30298f24079860c4dee452fdef6519b362a4a026"
+  version = "v1.0.2"
+
+[[projects]]
+  digest = "1:d96cb3ed0e90e9f15a50a9fe2dc49a30eef739648547e1b664868ea73fbf294b"
+  name = "github.com/marcusolsson/tui-go"
+  packages = [
+    ".",
+    "wordwrap",
+  ]
+  pruneopts = "UT"
+  revision = "4bb09120fbbb8b6e7d44d802f1e66f78bb4650a0"
+  version = "v0.4.0"
+
+[[projects]]
   digest = "1:3804a3a02964db8e6db3e5e7960ac1c1a9b12835642dd4f4ac4e56c749ec73eb"
   name = "github.com/markbates/inflect"
   packages = ["."]
@@ -286,6 +324,22 @@
   packages = ["."]
   pruneopts = "UT"
   revision = "81af80346b1a01caae0cbc27fd3c1ba5b11e189f"
+
+[[projects]]
+  digest = "1:0356f3312c9bd1cbeda81505b7fd437501d8e778ab66998ef69f00d7f9b3a0d7"
+  name = "github.com/mattn/go-runewidth"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "3ee7d812e62a0804a7d0a324e0249ca2db3476d3"
+  version = "v0.0.4"
+
+[[projects]]
+  digest = "1:abf08734a6527df70ed361d7c369fb580e6840d8f7a6012e5f609fdfd93b4e48"
+  name = "github.com/mitchellh/go-wordwrap"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "9e67c67572bc5dd02aef930e2b0ae3c02a4b5a5c"
+  version = "v1.0.0"
 
 [[projects]]
   digest = "1:33422d238f147d247752996a26574ac48dcf472976eda7f5134015f06bf16563"
@@ -461,11 +515,13 @@
   revision = "2d0786266e9cd132da844109aa05016f11f3df28"
 
 [[projects]]
-  digest = "1:8d8faad6b12a3a4c819a3f9618cb6ee1fa1cfc33253abeeea8b55336721e3405"
+  digest = "1:79c5cb4177013a706cb70478eedf23df5dc2469170b37e5b49c76cc854521701"
   name = "golang.org/x/text"
   packages = [
     "collate",
     "collate/build",
+    "encoding",
+    "encoding/internal/identifier",
     "internal/colltab",
     "internal/gen",
     "internal/language",
@@ -786,9 +842,12 @@
   analyzer-version = 1
   input-imports = [
     "github.com/cloudevents/sdk-go",
+    "github.com/cloudevents/sdk-go/pkg/cloudevents/codec",
     "github.com/cloudevents/sdk-go/pkg/cloudevents/transport/amqp",
+    "github.com/google/uuid",
     "github.com/gorilla/mux",
     "github.com/kelseyhightower/envconfig",
+    "github.com/marcusolsson/tui-go",
     "github.com/n3wscott/knap/pkg/config",
     "github.com/n3wscott/knap/pkg/knative",
     "golang.org/x/net/websocket",
