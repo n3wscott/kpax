@@ -1,3 +1,13 @@
+This is a simplified verison of https://github.com/knative/docs/blob/master/docs/install/Knative-with-GKE.md
+
+## Before you Begin:
+
+1. [Installing the Google Cloud SDK and `kubectl`](https://github.com/knative/docs/blob/master/docs/install/Knative-with-GKE.md#installing-the-google-cloud-sdk-and-kubectl)
+1. [Setting environment variables](https://github.com/knative/docs/blob/master/docs/install/Knative-with-GKE.md#setting-environment-variables)
+1. [Setting up a Google Cloud Platform project](https://github.com/knative/docs/blob/master/docs/install/Knative-with-GKE.md#setting-up-a-google-cloud-platform-project)
+
+_Skip_ [Creating a Kubernetes cluster](https://github.com/knative/docs/blob/master/docs/install/Knative-with-GKE.md#creating-a-kubernetes-cluster)
+
 ## Installing Knative Eventing with Cloud Run on GKE
 
 The following commands install all available Knative Eventing components:
