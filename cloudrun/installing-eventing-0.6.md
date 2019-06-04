@@ -19,7 +19,7 @@ The following commands install all available Knative Eventing components:
    ```bash
    kubectl apply \
    --filename https://github.com/knative/eventing/releases/download/v0.6.0/release.yaml \
-   --filename https://github.com/knative/eventing-sources/releases/download/v0.6.0/eventing-sources.yaml \
+   --filename https://github.com/knative/eventing-sources/releases/download/v0.6.0/eventing-sources.yaml
    ```
 
 1. Monitor the Knative components until all of the components show a `STATUS` of
